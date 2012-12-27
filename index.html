@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pogoda</title>
+ 	<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
+
+<script>
+
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+		menu();
+		var id=window.localStorage.getItem('__padoga__') || 'Szczecin';
+		pokaz(id);
+    }
+    function onDeviceReady() {
+		//document.getElementById('feeddiv').innerHTML='<h1>Czekamy</h1>';
+		//document.addEventListener("resume", onResume, false);
+		//document.addEventListener("pause", onPause, false);
+		//document.addEventListener("online", onOnline, false);
+		//document.addEventListener("offline", onOffline, false);
+		//document.addEventListener("backbutton", onBackKeyDown, false);
+		document.addEventListener("menubutton", onMenuKeyDown, false);		
+		//document.getElementById('test').innerHTML='onDeviceReady end<br />';	
+    }
+	function onMenuKeyDown() {
+		//document.getElementById('test').innerHTML='onMenuKeyDown<br />';
+		document.getElementById("menu").style.display="block";
+    }	
+	
+	
+	function pokaz(id){
+		document.getElementById('img').src=miasta[id];
+		window.localStorage.setItem('__padoga__',id);
+	}
+	
+	function menu(){
+		var id=window.localStorage.getItem('__padoga__') || 'Szczecin';
+		var html='';
+		var klasa='';
+		for (var i in miasta) {
+			//console.log(i+' = '+miasta[i]);
+			//html+='<button class="btn" onClick="javascript:document.getElementById(\'img\').src=\''+miasta[i]+'\';">'+i+'</button>';
+			if (i===id) klasa=' active'; else klasa='';
+			html+='<button class="btn'+klasa+'" onClick="javascript:pokaz(\''+i+'\');">'+i+'</button>';
+		}
+		document.getElementById('menu').innerHTML=html;
+	}
+	
+	
+
+var miasta=[];
+miasta['Szczecin']='http://www.yr.no/place/Poland/West_Pomerania/Szczecin~7530840/avansert_meteogram.png';
+miasta['Koszalin']='http://www.yr.no/place/Poland/West_Pomerania/Koszalin/avansert_meteogram.png';
+miasta['Gdańsk']='http://www.yr.no/place/Poland/Pomerania/Gda%C5%84sk~7531002/avansert_meteogram.png';
+miasta['Olsztyn']='http://www.yr.no/place/Poland/Warmia-Masuria/Olsztyn/avansert_meteogram.png';
+
+miasta['Berlin']='http://www.yr.no/place/Germany/Berlin/Berlin~2950159/avansert_meteogram.png';
+miasta['Poznań']='http://www.yr.no/place/Poland/Greater_Poland/Pozna%c5%84/avansert_meteogram.png';
+miasta['Bydgoszcz']='http://www.yr.no/place/Poland/Kuyavian-Pomerania/Bydgoszcz~3102014/avansert_meteogram.png';
+miasta['Warszawa']='http://www.yr.no/place/Poland/Masovia/Warszawa~6695624/avansert_meteogram.png';
+miasta['Białystok']='http://www.yr.no/place/Poland/Podlachia/Bia%C5%82ystok/avansert_meteogram.png';
+
+//console.log(miasta);
+miasta['Gorzów']='http://www.yr.no/place/Poland/Lubusz/Gorz%C3%B3w_Wielkopolski/avansert_meteogram.png';
+miasta['Wrocław']='http://www.yr.no/place/Poland/Lower_Silesia/Wroc%C5%82aw/avansert_meteogram.png';
+miasta['Kraków']='http://www.yr.no/place/Poland/Lesser_Poland/Krak%C3%B3w/avansert_meteogram.png';
+miasta['Rzeszów']='http://www.yr.no/place/Poland/Subcarpathia/Rzesz%C3%B3w/avansert_meteogram.png';
+//
+//
+//miasta['']='';
+//miasta['']='';
+</script>
+
+<style type="text/css"> 
+body {}
+.btn{margin:3px; display:inline-block;*display:inline;*zoom:1;padding:4px 12px;margin-bottom:0;text-align:center;vertical-align:middle;cursor:pointer;color:#333333;text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);background-color:#f5f5f5;background-image:-moz-linear-gradient(top, #ffffff, #e6e6e6);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));background-image:-webkit-linear-gradient(top, #ffffff, #e6e6e6);background-image:-o-linear-gradient(top, #ffffff, #e6e6e6);background-image:linear-gradient(to bottom, #ffffff, #e6e6e6);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);border-color:#e6e6e6 #e6e6e6 #bfbfbf;border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);*background-color:#e6e6e6;filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);border:1px solid #bbbbbb;*border:0;border-bottom-color:#a2a2a2;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;*margin-left:.3em;-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);}.btn:hover,.btn:active,.btn.active,.btn.disabled,.btn[disabled]{color:#333333;background-color:#e6e6e6;*background-color:#d9d9d9;}
+.btn:active,.btn.active{background-color:#aaaa88; color:#2244dd; font-weight:bold;}
+
+</style>
+</head>
+
+<body onload="onLoad()">
+
+<img id="img" src="http://www.yr.no/place/Poland/West_Pomerania/Szczecin~7530840/avansert_meteogram.png" /><br>
+<div id="menu"></div>
+
+<br />
+<a href="http://www.yr.no/place/Poland/West_Pomerania/Szczecin~3083829/hour_by_hour_detailed.html"><h3>Szczecin yr.no</h3></a> 
+<br />
+<a href="http://www.yr.no/"><img src="yr-logo.png" /></a>
+<br />
+</body>
+</html>
