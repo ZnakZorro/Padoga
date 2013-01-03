@@ -4,7 +4,11 @@
   <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pogoda</title>
+<style>
+table, td {border:1px solid #ddd; padding:2px;}
+</style>	
  	<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
+	<script type="text/javascript" charset="utf-8" src="kapiszon.js"></script>
 
 <script>
 
@@ -71,6 +75,35 @@ miasta['Rzeszów']='http://www.yr.no/place/Poland/Subcarpathia/Rzesz%C3%B3w/avan
 //
 //miasta['']='';
 //miasta['']='';
+
+	function viewInfoKorki(raw){
+		$('#korki').innerHTML=raw;
+	}
+    
+    
+ function korki(){
+	$('#korki').style.display="block";
+	$('#korki').innerHTML="Korki";
+var script=document.createElement('SCRIPT');
+script.type='text/javascript';
+script.src='http://www.wi.zut.edu.pl/cdn/json/korki.json.php?callback=viewInfoKorki&co=czas&jak=tabela&format=joomla';
+document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function temperatura(){
+	$('#temperatura').style.display="block";
+	$('#temperatura').innerHTML="Temperatura";
+	
+	$('#iftemperatura').style.display="block";
+	$('#iftemperatura').style.width="100%";
+	$('#iftemperatura').style.height="15em";
+	$('#iftemperatura').style.border="none";
+
+	var pogoda='http://zszczech.zut.edu.pl/ccllaass/Pogoda/majowe.php';
+	//$('#iftemperatura').src=pogoda;
+	window.open(pogoda,'iftemperatura');
+}
+
 </script>
 
 <style type="text/css"> 
@@ -86,10 +119,19 @@ body {}
 <img id="img" src="http://www.yr.no/place/Poland/West_Pomerania/Szczecin~7530840/avansert_meteogram.png" /><br>
 <div id="menu"></div>
 
-<br />
+<div>
+	<button class="btn btn-inverse" onClick="korki()">Korki</button> 
+	<div id="korki" style="display:none"></div>
+	<button class="btn btn-inverse" onClick="temperatura()">Temperatura</button> 
+	<div id="temperatura" style="display:none"></div>
+	<iframe id="iftemperatura" name="iftemperatura" style="display:none"></iframe>
+<div>
+
 <a href="http://www.yr.no/place/Poland/West_Pomerania/Szczecin~3083829/hour_by_hour_detailed.html"><h3>Szczecin yr.no</h3></a> 
-<br />
+ &nbsp;
 <a href="http://www.yr.no/"><img src="yr-logo.png" /></a>
 <br />
+<button class="btn btn-warning" onClick="koniec()">Koniec</button> 
+
 </body>
 </html>
