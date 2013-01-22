@@ -30,27 +30,21 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
   -webkit-font-smoothing: antialiased;
 }
 </style>	
-<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script> 	
-
+ 	
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script>
+google.load("feeds", "1");
 
 
-   function onLoad() {
+
+    function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
-		try {if (device.uuid) {}	}
-		catch(err) {onDeviceReady();}
-    }
-
-
-    function onDeviceReady() {
-		document.addEventListener("menubutton", onMenuKeyDown, false);	
 		menu();
 		var id=window.localStorage.getItem('__padoga__') || 'Szczecin';
 		pokaz(id);
-		var k=window.setTimeout(function(){korki();},2500);
-		var t=window.setTimeout(function(){temperatura();},3000);
-		
-		
+    }
+    function onDeviceReady() {
+		document.addEventListener("menubutton", onMenuKeyDown, false);		
     }
 	function onMenuKeyDown() {
 		document.getElementById("menu").style.display="block";
@@ -131,7 +125,7 @@ function temperatura(){
 
 
 
-var $=function (id) {
+var $=function kapiszon(id) {
 	var prefix=id[0];
 	var iid=id.slice(1,id.length);
 	switch (prefix){
@@ -156,9 +150,19 @@ function loadURL(url){
 }
 
 
+function czytaj(){
+//http://api.yr.no/weatherapi/documentation
+	var xml_szczecin='http://www.yr.no/place/Poland/West_Pomerania/Szczecin~3083829/forecast_hour_by_hour.xml';
+	var feedpointer=new google.feeds.Feed(xml_szczecin);
+	//feedpointer.includeHistoricalEntries()
+	//feedpointer.setNumEntries(10);
+	feedpointer.load(displayfeed);
 
+}
 
-
+    function displayfeed(result){
+		console.log(result);
+	}
 </script>
 
 
@@ -175,13 +179,13 @@ function loadURL(url){
 	<button class="btn btn-gray" onClick="temperatura()">Temperatura</button> 
 	<div id="temperatura" style="display:none"></div>
 	<iframe id="iftemperatura" name="iftemperatura" style="display:none"></iframe>
+	<button class="btn btn-gray" onClick="czytaj()">czytaj</button> 
+	<div id="feeddiv" style="display:block"></div>
 <div>
 
-<a href="javascript:void()"; onClick="loadURL('http://www.yr.no/place/Poland/West_Pomerania/Szczecin~3083829/long.html');"><h3>Szczecin longTerm</h3></a> 
-<a href="javascript:void()"; onClick="loadURL('http://www.yr.no/place/Poland/West_Pomerania/Szczecin~3083829/hour_by_hour_detailed.html');"><h3>Szczecin yr.no</h3></a> 
-
-
-<a href="javascript:void()"; onClick="loadURL('http://www.yr.no/');"><img src="yr-logo.png" /></a>
+<a href="http://www.yr.no/place/Poland/West_Pomerania/Szczecin~3083829/hour_by_hour_detailed.html"><h3>Szczecin yr.no</h3></a> 
+ &nbsp;
+<a href="http://www.yr.no/"><img src="yr-logo.png" /></a>
 <br />
 <button class="btn btn-warning" onClick="koniec()">Koniec</button> 
 
