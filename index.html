@@ -29,6 +29,42 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
   -webkit-font-smoothing: antialiased;
 }
+
+.btn-silver {
+  background-color: hsl(0, 0%, 16%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8a8a8a", endColorstr="#686868");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#8a8a8a), to(#686868));
+  background-image: -moz-linear-gradient(top, #8a8a8a, #686868);
+  background-image: -ms-linear-gradient(top, #8a8a8a, #686868);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8a8a8a), color-stop(100%, #686868));
+  background-image: -webkit-linear-gradient(top, #8a8a8a, #686868);
+  background-image: -o-linear-gradient(top, #8a8a8a, #686868);
+  background-image: linear-gradient(#8a8a8a, #686868);
+  border-color: #686868 #686868 hsl(0, 0%, 11%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-red {
+  background-color: hsl(0, 0%, 16%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#aa4400", endColorstr="#884422");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#aa4400), to(#884422));
+  background-image: -moz-linear-gradient(top, #aa4400, #884422);
+  background-image: -ms-linear-gradient(top, #aa4400, #884422);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #aa4400), color-stop(100%, #884422));
+  background-image: -webkit-linear-gradient(top, #aa4400, #884422);
+  background-image: -o-linear-gradient(top, #aa4400, #884422);
+  background-image: linear-gradient(#aa4400, #884422);
+  border-color: #884422 #884422 hsl(0, 0%, 11%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+  -webkit-font-smoothing: antialiased;
+}
+
+
 </style>	
 <script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script> 	
 
@@ -47,8 +83,8 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 		menu();
 		var id=window.localStorage.getItem('__padoga__') || 'Szczecin';
 		pokaz(id);
-		var k=window.setTimeout(function(){korki();},2500);
-		var t=window.setTimeout(function(){temperatura();},3000);
+		var k=window.setTimeout(function(){korki();},3000);
+		var t=window.setTimeout(function(){temperatura();},4000);
 		
 		
     }
@@ -70,7 +106,7 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 			//console.log(i+' = '+miasta[i]);
 			//html+='<button class="btn" onClick="javascript:document.getElementById(\'img\').src=\''+miasta[i]+'\';">'+i+'</button>';
 			if (i===id) klasa=' active'; else klasa='';
-			html+='<button class="btn'+klasa+'" onClick="javascript:pokaz(\''+i+'\');">'+i+'</button>';
+			html+='<button class="btn btn-silver'+klasa+'" onClick="javascript:pokaz(\''+i+'\');">'+i+'</button>';
 		}
 		document.getElementById('menu').innerHTML=html;
 	}
@@ -167,15 +203,19 @@ function loadURL(url){
 <body onload="onLoad()">
 
 <img id="img" src="http://www.yr.no/place/Poland/West_Pomerania/Szczecin~7530840/avansert_meteogram.png" /><br>
-<div id="menu"></div>
-<br />
+
 <div>
-	<button class="btn btn-gray" onClick="korki()">Korki</button> 
-	<div id="korki" style="display:none"></div>
-	<button class="btn btn-gray" onClick="temperatura()">Temperatura</button> 
+	<button class="btn btn-gray" onClick="korki()" style="float:left;">Korki</button> 
+	<div id="korki" style="display:none;"></div>
+	<button class="btn btn-gray" onClick="temperatura()"style="clear:left;">Temperatura</button> 
 	<div id="temperatura" style="display:none"></div>
 	<iframe id="iftemperatura" name="iftemperatura" style="display:none"></iframe>
 <div>
+
+<button class="btn btn-red" onClick="koniec()">Koniec</button> 
+<div id="menu"></div>
+
+
 
 <a href="javascript:void()"; onClick="loadURL('http://www.yr.no/place/Poland/West_Pomerania/Szczecin~3083829/long.html');"><h3>Szczecin longTerm</h3></a> 
 <a href="javascript:void()"; onClick="loadURL('http://www.yr.no/place/Poland/West_Pomerania/Szczecin~3083829/hour_by_hour_detailed.html');"><h3>Szczecin yr.no</h3></a> 
@@ -183,7 +223,7 @@ function loadURL(url){
 
 <a href="javascript:void()"; onClick="loadURL('http://www.yr.no/');"><img src="yr-logo.png" /></a>
 <br />
-<button class="btn btn-warning" onClick="koniec()">Koniec</button> 
+
 
 </body>
 </html>
