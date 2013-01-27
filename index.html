@@ -96,8 +96,8 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 		menu(id);
 		pokaz(id);
 		if (id=='Szczecin'){
-			var k=window.setTimeout(function(){korki();},3000);
-			var t=window.setTimeout(function(){temperatura();},4000);
+			var t=window.setTimeout(function(){temperatura();},3000);
+			var k=window.setTimeout(function(){korki();},4000);
 		}
     }
 	function onOffline() {
@@ -235,14 +235,17 @@ function loadURL(url){
 <img id="img" src="http://www.yr.no/place/Poland/West_Pomerania/Szczecin~7530840/avansert_meteogram.png" /><br>
 
 <div>
+	<button id="btn_temperatura" class="btn btn-gray" onClick="temperatura()">Temperatura</button> 
 	<button id="btn_korki" class="btn btn-gray" onClick="korki()" style="float:left;">Korki</button> 
-	<div id="korki" style="display:none;"></div>
-	<button id="btn_temperatura" class="btn btn-gray" onClick="temperatura()"style="clear:left;">Temperatura</button> 
+	<button class="btn btn-red" onClick="koniec()">Koniec</button> 
+	
 	<div id="temperatura" style="display:none"></div>
 	<iframe id="iftemperatura" name="iftemperatura" style="display:none"></iframe>
+
+	<div id="korki" style="display:none;"></div>
 <div>
 
-<button class="btn btn-red btn-large" onClick="koniec()">Koniec</button> 
+
 <div id="menu"></div>
 
 
