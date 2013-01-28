@@ -89,6 +89,7 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 
     function onDeviceReady() {
 		document.addEventListener("offline", onOffline, false);
+		document.addEventListener("online", onOnline, false);
 		document.addEventListener("backbutton", onBackKeyDown, false);
 		document.addEventListener("menubutton", onMenuKeyDown, false);	
 		
@@ -101,11 +102,17 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 		}
     }
 	function onOffline() {
-		alert('brak sieci');
+		var o=window.setTimeout(function(){alert('brak sieci');},1000);
 	}
 	
+    function onOnline() {
+		var o=window.setTimeout(function(){onDeviceReady();},1000);
+		//document.getElementById('test').innerHTML='onOnline<br />';
+    }	
+	
 	function onBackKeyDown() {
-		navigator.app.backHistory();	
+		koniec();
+		//navigator.app.backHistory();	
 	}
 	
 	function onMenuKeyDown() {
