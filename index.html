@@ -116,7 +116,10 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 	}
 	
 	function onMenuKeyDown() {
+		if (document.getElementById("menu").style.display=="none")
 		document.getElementById("menu").style.display="block";
+		else 
+		document.getElementById("menu").style.display="none";
     }	
 	
 	
@@ -135,7 +138,7 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 			if (i===id) klasa=' active'; else klasa='';
 			html+='<button class="btn btn-silver'+klasa+'" onClick="javascript:pokaz(\''+i+'\');">'+i+'</button>';
 		}
-		if (id=='Szczecin'){
+		if (id=='Szczecin' || id=='Dąbie'){
 			html+='<br />';
 			html+='<button href="javascript:void()"; class="btn" onClick="loadURL(\'http://www.yr.no/place/Poland/West_Pomerania/Szczecin~3083829/long.html\');">Szczecin longTerm</button>';
 			html+='<button href="javascript:void()"; class="btn" onClick="loadURL(\'http://www.yr.no/place/Poland/West_Pomerania/Szczecin~3083829/hour_by_hour_detailed.html\');">Szczecin yr.no</button>';
