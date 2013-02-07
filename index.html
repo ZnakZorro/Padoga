@@ -96,18 +96,20 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 		var id=window.localStorage.getItem('__padoga__') || 'Szczecin';
 		menu(id);
 		pokaz(id);
-		if (id=='Szczecin' || id== 'Dąbie'){
+		if (id=='Szczecin' || id=='Dąbie'){
 			var t=window.setTimeout(function(){temperatura();},3000);
 			var k=window.setTimeout(function(){korki();},4000);
 		}
     }
 	function onOffline() {
-		var o=window.setTimeout(function(){alert('brak sieci');},1000);
+		//var o=window.setTimeout(function(){alert('brak sieci');},1000);
+		document.getElementById('test').innerHTML+='<h3>Brak sieci</h3>';
 	}
 	
     function onOnline() {
 		var o=window.setTimeout(function(){onDeviceReady();},1000);
 		//document.getElementById('test').innerHTML='onOnline<br />';
+		document.getElementById('test').innerHTML='<h3>Jest sieć</h3>';
     }	
 	
 	function onBackKeyDown() {
@@ -259,6 +261,7 @@ function loadURL(url){
 
 
 <div id="menu"></div>
+<div id="test"></div>
 
 
 
