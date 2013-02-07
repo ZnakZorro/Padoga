@@ -73,6 +73,7 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 
 .btn:active,.btn.active{background-color:#aaaa88; color:#ffeeaa; font-weight:bold;}
 
+#przyslowia {font-weight:bold; color:#800;}
 </style>	
  
 <script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>	
@@ -99,10 +100,19 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 		if (id=='Szczecin' || id=='Dąbie'){
 			var t=window.setTimeout(function(){temperatura();},3000);
 			var k=window.setTimeout(function(){korki();},4000);
-		}
+		}	
+		dajPrzyslowie();
     }
+	
+		function dajPrzyslowie(){
+			var ile=przyslowia.length;
+			var ktory=Math.round(Math.random() * ile);
+			document.getElementById('przyslowia').innerHTML=przyslowia[ktory];
+		}
+		
 	function onOffline() {
 		//var o=window.setTimeout(function(){alert('brak sieci');},1000);
+		var offp=window.setInterval(function(){dajPrzyslowie();},3000);
 		document.getElementById('test').innerHTML+='<h3>Brak sieci</h3>';
 		document.getElementById('img').src="yr-logo.png";
 	}
@@ -236,7 +246,48 @@ function loadURL(url){
 	  }
 }
 
-
+var przyslowia=[
+'Będzie pogoda, jak się nie poleje z nieba woda',
+'Bój się w styczniu wiosny, bo marzec zazdrosny',
+'Czasem luty ostro kuty, czasem w luty same pluty',
+'Czasem luty się zlituje, że człek niby wiosnę czuje; ale czasem tak się zżyma, że człek prawie nie wytrzyma',
+'Gdy ciepło w lutym, zimno w marcu bywa, długo trwa zima, to jest niewątpliwa',
+'Jak po lutym marzec, to po maju czerwiec',
+'Jedna jaskółka wiosny nie czyni',
+'Jeśli ci jeszcze nie dokuczył luty, to pal dobrze w kominie i miej kożuch suty',
+'Jeżeli pszczoła w styczniu z ula wylatuje, rzadko pomyślny rok nam obiecuje',
+'Kwiecień plecień, bo przeplata trochę zimy, trochę lata',
+'Marzec: czy słoneczny, czy płaczliwy, listopada obraz żywy',
+'Na stycznie i lute trzeba mieć konie kute',
+'Na świętego Hieronima jest pogoda albo jej ni ma',
+'Styczeń pogodny wróży rok płodny',
+'Spyta cię luty: masz-li buty?',
+'W marcu jak w garncu',
+'W maju jak w gaju',
+'Na wiosnę ceber deszczu, łyżka błota; na jesieni łyżka deszczu, ceber błota',
+'W lutym gdy zagrzmi od wschodniego boku, burze i wiatry walne są w tym roku',
+'Deszcze Michałowe prawią w zimie powietrze zdrowe',
+'Gdy na święty Walek deszcze, mrozy wrócą jeszcze',
+'Gdy w styczniu deszcz leje, złe robi nadzieje',
+'Boże Narodzenie po wodzie, Wielkanoc po lodzie',
+'Święta Barbara po wodzie, Boże Narodzenie po lodzie',
+'Gdy mróz w lutym ostro trzyma, tedy jest niedługa zima',
+'Gdy na święty Walek deszcze, mrozy wrócą jeszcze',
+'Idzie luty, podkuj buty',
+'Kiedy luty, obuj buty',
+'Kiedy luty puści, to marzec wypiecze',
+'Kiedy styczeń najostrzejszy, wtedy roczek najpłodniejszy',
+'Luty w lód okuty',
+'Spyta cię luty: masz-li buty?',
+'Św. Walenty odmrozi ci pięty',
+'Bywać śnieg i w maju',
+'Kiedy luty puści, to marzec wypiecze',
+'W lutym gdy zagrzmi od wschodniego boku, burze i wiatry walne są w tym roku',
+'Boże Narodzenie po wodzie, Wielkanoc po lodzie',
+'Kiedy luty schodzi, człek po wodzie brodzi',
+'Święta Barbara po wodzie, Boże Narodzenie po lodzie',
+'W lutym wody wiele – w lecie głodne nawet cielę'
+];
 
 
 
@@ -248,6 +299,7 @@ function loadURL(url){
 <body onload="onLoad()">
 
 <img id="img" src="http://www.yr.no/place/Poland/West_Pomerania/Szczecin~7530840/avansert_meteogram.png" /><br>
+<div id="przyslowia"></div>
 
 <div>
 	<button id="btn_temperatura" class="btn btn-gray" onClick="temperatura()">Temperatura</button> 
