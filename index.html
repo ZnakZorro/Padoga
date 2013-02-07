@@ -96,7 +96,7 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 		var id=window.localStorage.getItem('__padoga__') || 'Szczecin';
 		menu(id);
 		pokaz(id);
-		if (id=='Szczecin'){
+		if (id=='Szczecin' || id== 'Dąbie'){
 			var t=window.setTimeout(function(){temperatura();},3000);
 			var k=window.setTimeout(function(){korki();},4000);
 		}
@@ -152,10 +152,8 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 	
 
 var miasta=[];
-miasta['Szczecin']='http://www.yr.no/place/Poland/West_Pomerania/Szczecin~7530840/avansert_meteogram.png';
 miasta['Dąbie']='http://www.yr.no/place/Poland/West_Pomerania/Szczecin_D%C4%85bie/avansert_meteogram.png';
-
-
+miasta['Szczecin']='http://www.yr.no/place/Poland/West_Pomerania/Szczecin~7530840/avansert_meteogram.png';
 
 miasta['Koszalin']='http://www.yr.no/place/Poland/West_Pomerania/Koszalin/avansert_meteogram.png';
 miasta['Gdańsk']='http://www.yr.no/place/Poland/Pomerania/Gda%C5%84sk~7531002/avansert_meteogram.png';
