@@ -77,6 +77,7 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 </style>	
  
 <script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>	
+<script type="text/javascript" charset="utf-8" src="przyslowia.js"></script>	
 
 <script>
 
@@ -102,17 +103,32 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 			var k=window.setTimeout(function(){korki();},4000);
 		}	
 		dajPrzyslowie();
+		var offp=window.setInterval(function(){dajPrzyslowie();},8000);
     }
 	
 		function dajPrzyslowie(){
-			var ile=przyslowia.length;
-			var ktory=Math.round(Math.random() * ile);
-			document.getElementById('przyslowia').innerHTML=przyslowia[ktory];
+			var d = new Date();
+			var miesiac=d.getMonth()+1;
+			var dzien=d.getDate()-1;
+			
+			if (!przyslowia[miesiac]) miesiac=0;
+			/*
+			if (przyslowia[miesiac][dzien]) {
+				document.getElementById('przyslowiaid').innerHTML=przyslowia[miesiac][dzien];
+				}
+			else 
+			*/
+			{
+				var ile=przyslowia[miesiac].length-1;
+				var ktory=Math.round(Math.random() * ile);
+				//console.log(ile+' = '+ktory);
+				document.getElementById('przyslowiaid').innerHTML=przyslowia[miesiac][ktory];
+			}
 		}
 		
 	function onOffline() {
 		//var o=window.setTimeout(function(){alert('brak sieci');},1000);
-		var offp=window.setInterval(function(){dajPrzyslowie();},3000);
+		var offp=window.setInterval(function(){dajPrzyslowie();},12000);
 		document.getElementById('test').innerHTML+='<h3>Brak sieci</h3>';
 		document.getElementById('img').src="yr-logo.png";
 	}
@@ -146,8 +162,6 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 		var html='';
 		var klasa='';
 		for (var i in miasta) {
-			//console.log(i+' = '+miasta[i]);
-			//html+='<button class="btn" onClick="javascript:document.getElementById(\'img\').src=\''+miasta[i]+'\';">'+i+'</button>';
 			if (i===id) klasa=' active'; else klasa='';
 			html+='<button class="btn btn-silver'+klasa+'" onClick="javascript:pokaz(\''+i+'\');">'+i+'</button>';
 		}
@@ -178,15 +192,11 @@ miasta['Bydgoszcz']='http://www.yr.no/place/Poland/Kuyavian-Pomerania/Bydgoszcz~
 miasta['Warszawa']='http://www.yr.no/place/Poland/Masovia/Warszawa~6695624/avansert_meteogram.png';
 miasta['Białystok']='http://www.yr.no/place/Poland/Podlachia/Bia%C5%82ystok/avansert_meteogram.png';
 
-//console.log(miasta);
 miasta['Gorzów']='http://www.yr.no/place/Poland/Lubusz/Gorz%C3%B3w_Wielkopolski/avansert_meteogram.png';
 miasta['Wrocław']='http://www.yr.no/place/Poland/Lower_Silesia/Wroc%C5%82aw/avansert_meteogram.png';
 miasta['Kraków']='http://www.yr.no/place/Poland/Lesser_Poland/Krak%C3%B3w/avansert_meteogram.png';
 miasta['Rzeszów']='http://www.yr.no/place/Poland/Subcarpathia/Rzesz%C3%B3w/avansert_meteogram.png';
-//
-//
-//miasta['']='';
-//miasta['']='';
+
 
 	function viewInfoKorki(raw){
 		$('#korki').innerHTML=raw;
@@ -246,49 +256,6 @@ function loadURL(url){
 	  }
 }
 
-var przyslowia=[
-'Będzie pogoda, jak się nie poleje z nieba woda',
-'Bój się w styczniu wiosny, bo marzec zazdrosny',
-'Czasem luty ostro kuty, czasem w luty same pluty',
-'Czasem luty się zlituje, że człek niby wiosnę czuje; ale czasem tak się zżyma, że człek prawie nie wytrzyma',
-'Gdy ciepło w lutym, zimno w marcu bywa, długo trwa zima, to jest niewątpliwa',
-'Jak po lutym marzec, to po maju czerwiec',
-'Jedna jaskółka wiosny nie czyni',
-'Jeśli ci jeszcze nie dokuczył luty, to pal dobrze w kominie i miej kożuch suty',
-'Jeżeli pszczoła w styczniu z ula wylatuje, rzadko pomyślny rok nam obiecuje',
-'Kwiecień plecień, bo przeplata trochę zimy, trochę lata',
-'Marzec: czy słoneczny, czy płaczliwy, listopada obraz żywy',
-'Na stycznie i lute trzeba mieć konie kute',
-'Na świętego Hieronima jest pogoda albo jej ni ma',
-'Styczeń pogodny wróży rok płodny',
-'Spyta cię luty: masz-li buty?',
-'W marcu jak w garncu',
-'W maju jak w gaju',
-'Na wiosnę ceber deszczu, łyżka błota; na jesieni łyżka deszczu, ceber błota',
-'W lutym gdy zagrzmi od wschodniego boku, burze i wiatry walne są w tym roku',
-'Deszcze Michałowe prawią w zimie powietrze zdrowe',
-'Gdy na święty Walek deszcze, mrozy wrócą jeszcze',
-'Gdy w styczniu deszcz leje, złe robi nadzieje',
-'Boże Narodzenie po wodzie, Wielkanoc po lodzie',
-'Święta Barbara po wodzie, Boże Narodzenie po lodzie',
-'Gdy mróz w lutym ostro trzyma, tedy jest niedługa zima',
-'Gdy na święty Walek deszcze, mrozy wrócą jeszcze',
-'Idzie luty, podkuj buty',
-'Kiedy luty, obuj buty',
-'Kiedy luty puści, to marzec wypiecze',
-'Kiedy styczeń najostrzejszy, wtedy roczek najpłodniejszy',
-'Luty w lód okuty',
-'Spyta cię luty: masz-li buty?',
-'Św. Walenty odmrozi ci pięty',
-'Bywać śnieg i w maju',
-'Kiedy luty puści, to marzec wypiecze',
-'W lutym gdy zagrzmi od wschodniego boku, burze i wiatry walne są w tym roku',
-'Boże Narodzenie po wodzie, Wielkanoc po lodzie',
-'Kiedy luty schodzi, człek po wodzie brodzi',
-'Święta Barbara po wodzie, Boże Narodzenie po lodzie',
-'W lutym wody wiele – w lecie głodne nawet cielę'
-];
-
 
 
 </script>
@@ -299,7 +266,7 @@ var przyslowia=[
 <body onload="onLoad()">
 
 <img id="img" src="http://www.yr.no/place/Poland/West_Pomerania/Szczecin~7530840/avansert_meteogram.png" /><br>
-<div id="przyslowia"></div>
+<div id="przyslowiaid"></div>
 
 <div>
 	<button id="btn_temperatura" class="btn btn-gray" onClick="temperatura()">Temperatura</button> 
