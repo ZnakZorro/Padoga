@@ -81,6 +81,7 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 
 <script>
 
+var offprzyslowia=null;
 
    function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -103,7 +104,7 @@ tr:nth-child(5n) {background-color: #ffe0a0;}
 			var k=window.setTimeout(function(){korki();},4000);
 		}	
 		dajPrzyslowie();
-		var offp=window.setInterval(function(){dajPrzyslowie();},8000);
+		if (!offprzyslowia) offprzyslowia=window.setInterval(function(){dajPrzyslowie();},8000);
     }
 	
 		function dajPrzyslowie(){
