@@ -100,11 +100,11 @@ var offprzyslowia=null;
 		menu(id);
 		pokaz(id);
 		if (id=='Szczecin' || id=='Dąbie'){
-			var t=window.setTimeout(function(){temperatura();},3000);
-			var k=window.setTimeout(function(){korki();},4000);
+			//var t=window.setTimeout(function(){temperatura();},3000);
+			//var k=window.setTimeout(function(){korki();},4000);
 		}	
 		dajPrzyslowie();
-		if (!offprzyslowia) offprzyslowia=window.setInterval(function(){dajPrzyslowie();},8000);
+		if (!offprzyslowia) offprzyslowia=window.setInterval(function(){dajPrzyslowie();},30000);
     }
 	
 		function dajPrzyslowie(){
