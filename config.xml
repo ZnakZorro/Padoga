@@ -2,8 +2,8 @@
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.phonegap.padoga"
-        versionCode="10" 
-        version   = "2.2.2">
+        versionCode="2.7.0" 
+        version   = "2.7.0">
 
 
     <name>ZnakZorro - Padoga</name>
